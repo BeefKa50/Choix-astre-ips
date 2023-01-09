@@ -43,16 +43,16 @@ class Student:
         else:
             answers_array["Ingénieur expert technique"] = hypothesis["Ingénieur expert technique"]
 
-        answers_array["Procédural"] = hypothesis["Procédural"]*((self.procedural_ease-1)/2)
-        answers_array["Orienté objet"] = hypothesis["Orienté objet"] * ((self.object_oriented_ease - 1) / 2)
-        answers_array["Fonctionnel"] = hypothesis["Fonctionnel"] * ((self.functional_ease - 1) / 2)
+        answers_array["Procédural"] = hypothesis["Procédural"]*((self.procedural_ease-1)/2) if self.procedural_ease is not None else 0
+        answers_array["Orienté objet"] = hypothesis["Orienté objet"] * ((self.object_oriented_ease - 1) / 2) if self.object_oriented_ease is not None else 0
+        answers_array["Fonctionnel"] = hypothesis["Fonctionnel"] * ((self.functional_ease - 1) / 2) if self.functional_ease is not None else 0
 
-        answers_array["Web"] = hypothesis["Web"] * ((self.technology_interest["Web"]) / 5)
-        answers_array["Cloud"] = hypothesis["Cloud"] * ((self.technology_interest["Cloud"]) / 5)
-        answers_array["Embarqué"] = hypothesis["Embarqué"] * ((self.technology_interest["Embedded"]) / 5)
-        answers_array["Mobile"] = hypothesis["Mobile"] * ((self.technology_interest["Mobile"]) / 5)
+        answers_array["Web"] = hypothesis["Web"] * ((self.technology_interest["Web"]) / 5) if self.technology_interest["Web"] is not None else 0
+        answers_array["Cloud"] = hypothesis["Cloud"] * ((self.technology_interest["Cloud"]) / 5) if self.technology_interest["Cloud"] is not None else 0
+        answers_array["Embarqué"] = hypothesis["Embarqué"] * ((self.technology_interest["Embedded"]) / 5) if self.technology_interest["Embedded"] is not None else 0
+        answers_array["Mobile"] = hypothesis["Mobile"] * ((self.technology_interest["Mobile"]) / 5) if self.technology_interest["Mobile"] is not None else 0
         answers_array["Développement de jeux vidéos"] = hypothesis["Développement de jeux vidéos"] * \
-                                                        ((self.technology_interest["Videogames"]) / 5)
+                                                        ((self.technology_interest["Videogames"]) / 5) if self.technology_interest["Videogames"] is not None else 0
 
         for subject in self.high_school_subjects:
             if subject == "Maths" or subject == " Maths":
@@ -97,15 +97,15 @@ class Student:
             elif sub_s5 == "Introduction aux IHM" or sub_s5 == " Introduction aux IHM":
                 answers_array["S5 Introduction aux IHM"] = hypothesis["S5 Introduction aux IHM"]
 
-        answers_array["LabView"] = hypothesis["LabView"] * ((self.used_softwares["LabView"]-1) / 4)
-        answers_array["Excel"] = hypothesis["Excel"] * ((self.used_softwares["Excel"] - 1) / 4)
-        answers_array["Blender"] = hypothesis["Blender"] * ((self.used_softwares["Blender"] - 1) / 4)
-        answers_array["Unity"] = hypothesis["Unity"] * ((self.used_softwares["Unity"] - 1) / 4)
-        answers_array["Figma"] = hypothesis["Figma"] * ((self.used_softwares["Figma"] - 1) / 4)
+        answers_array["LabView"] = hypothesis["LabView"] * ((self.used_softwares["LabView"]-1) / 4) if self.used_softwares["LabView"] is not None else 0
+        answers_array["Excel"] = hypothesis["Excel"] * ((self.used_softwares["Excel"] - 1) / 4) if self.used_softwares["Excel"] is not None else 0
+        answers_array["Blender"] = hypothesis["Blender"] * ((self.used_softwares["Blender"] - 1) / 4) if self.used_softwares["Blender"] is not None else 0
+        answers_array["Unity"] = hypothesis["Unity"] * ((self.used_softwares["Unity"] - 1) / 4) if self.used_softwares["Unity"] is not None else 0
+        answers_array["Figma"] = hypothesis["Figma"] * ((self.used_softwares["Figma"] - 1) / 4) if self.used_softwares["Figma"] is not None else 0
         answers_array["Cisco Packet Tracer"] = hypothesis["Cisco Packet Tracer"] * \
-                                               ((self.used_softwares["Cisco Packet Tracer"] - 1) / 4)
-        answers_array["SolidWorks"] = hypothesis["SolidWorks"] * ((self.used_softwares["SolidWorks"] - 1) / 4)
-        answers_array["AutoCAD"] = hypothesis["AutoCAD"] * ((self.used_softwares["AutoCAD"] - 1) / 4)
+                                               ((self.used_softwares["Cisco Packet Tracer"] - 1) / 4) if self.used_softwares["Cisco Packet Tracer"] is not None else 0
+        answers_array["SolidWorks"] = hypothesis["SolidWorks"] * ((self.used_softwares["SolidWorks"] - 1) / 4) if self.used_softwares["SolidWorks"] is not None else 0
+        answers_array["AutoCAD"] = hypothesis["AutoCAD"] * ((self.used_softwares["AutoCAD"] - 1) / 4) if self.used_softwares["AutoCAD"] is not None else 0
 
         for machine in self.ensim_machines:
             if machine == "Imprimante 3D" or machine == " Imprimante 3D":
@@ -126,12 +126,11 @@ class Student:
             elif machine == "Rien, les ordis c’est très bien" or machine == " Rien, les ordis c’est très bien":
                 answers_array["Rien"] = hypothesis["Rien"]
 
-        answers_array["K[art]el"] = hypothesis["K[art]el"] * ((self.associations["Kartel"] - 1) / 3)
-        answers_array["Ensimersion"] = hypothesis["Ensimersion"] * ((self.associations["Ensimersion"] - 1) / 3)
-        answers_array["Ensim'Elec"] = hypothesis["Ensim'Elec"] * ((self.associations["Ensim'Elec"] - 1) / 3)
-        answers_array["Enigma"] = hypothesis["Enigma"] * ((self.associations["Enigma"] - 1) / 3)
-        answers_array["Enigma"] = hypothesis["Enigma"] * ((self.associations["Enigma"] - 1) / 3)
-        answers_array["L'Ensimien"] = hypothesis["L'Ensimien"] * ((self.associations["L'Ensimien"] - 1) / 3)
+        answers_array["K[art]el"] = hypothesis["K[art]el"] * ((self.associations["Kartel"] - 1) / 3) if self.associations["Kartel"] is not None else 0
+        answers_array["Ensimersion"] = hypothesis["Ensimersion"] * ((self.associations["Ensimersion"] - 1) / 3) if self.associations["Kartel"] is not None else 0
+        answers_array["Ensim'Elec"] = hypothesis["Ensim'Elec"] * ((self.associations["Ensim'Elec"] - 1) / 3) if self.associations["Kartel"] is not None else 0
+        answers_array["Enigma"] = hypothesis["Enigma"] * ((self.associations["Enigma"] - 1) / 3) if self.associations["Enigma"] is not None else 0
+        answers_array["L'Ensimien"] = hypothesis["L'Ensimien"] * ((self.associations["L'Ensimien"] - 1) / 3) if self.associations["L'Ensimien"] is not None else 0
 
         if self.object_to_3d_print == "Statue de Mario":
             answers_array["Statue de Mario"] = hypothesis["Statue de Mario"]

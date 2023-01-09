@@ -15,5 +15,5 @@ for student in students:
     print(vars(student))
 
 print("-----------------------------------------------------------------")
-print(vars(students[2]))
-print(students[2].answersAsArray())
+print(vars(students[7]))
+print(students[7].answersAsArray())
