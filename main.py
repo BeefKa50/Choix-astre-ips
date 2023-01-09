@@ -2,7 +2,6 @@ import numpy as np
 import pandas as pd
 from functions import initializeStudent
 from student import Student
-
 df = pd.read_csv(r'data\data.csv')
 
 students = []

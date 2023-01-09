@@ -1,3 +1,5 @@
+
+from django.db import models
 class Student:
     def __init__(self):
         self.id = "e000000"
