@@ -35,7 +35,7 @@ columns = {"date":"Horodateur",
 hypothesis = {"Ingénieur expert technique":-1,"Ingénieur, homme de culture":1,"Ingénieur chef de projet":0,
               "Procédural":-1,"Orienté objet":1,"Fonctionnel":1,"Web":1,"Cloud":0,"Embarqué":-1,"Mobile":1,
               "Développement de jeux vidéos":1,"Mathématiques":-1,"Physique-Chimie":-1,
-              "litterature_philosophie":1,"histoire_geographie":1,"gestion":0,"art":1,"sciences_de_l'ingenieur":-1,
+              "Littérature et Philosophie":1,"Histoire Géographie":1,"Gestion":0,"Arts appliqués":1,"Sciences de l'ingenieur":-1,
               "S5 cryptographie":-1,"S5 physique":-1,"S5 anglais":1,"S5 conduite de projet":0,"S5 droit du travail":0,
               "S5 Électronique":-1,"S5 Programmation":0,"S5 Algorithmique":0,"S5 Technologie de l'internet":1,
               "S5 Architecture des ordinateurs":-1,"S5 Logique combinatoire et séquentielle":-1,
@@ -46,10 +46,33 @@ hypothesis = {"Ingénieur expert technique":-1,"Ingénieur, homme de culture":1,
               "Boîtier pour carte Arduino":-1, "Bouton":-1, "Coque de téléphone":0, "Lecture":1, "Bricolage":-1,
               "Sport":0, "Art et dessin":1, "Jeux vidéos":0, "Musique":0, "Musculation":0,
               "Utilisation de palettes de couleur":1, "Non utilisation de palettes de couleurs":0, "Démontage du PC":-1
-              , "Réparation par le BIOS":-1, "Consulter un réparateur":1, "Acheter un nouveau PC":1, "Prépa intégrée":0
+              , "Réparation par le BIOS":-1, "Consulter un réparateur":1, "Acheter un nouveau PC":1, "Prépa intégrée":0,
               "CPGE ATS":0, "CPGE PT":-1, "CPGE TSI":-1, "CPGE MP":-1, "CPGE MPSI":-1, "CPGE BL":1, "CPGE PC":-1,
               "BTS SIO":0, "BTS SN":-1, "DUT Informatique":1, "DUT Métiers du multimédia et de l'internet":1,
               "L2/L3 Informatique":0, "M1/M2 Informatique":-1, "Windows":1, "MacOS":1, "Linux":-1}
+
+def assign_value_to_string_answer(answer):
+    if answer == "Ne connais pas":
+        return 1
+    elif answer == "Jamais":
+        return 2
+    elif answer == "Un peu":
+        return 3
+    elif answer == "Régulièrement":
+        return 4
+    elif answer == "Tout le temps":
+        return 5
+
+def assign_value_to_string_answer_asso(answer):
+    if answer == "J'y suis":
+        return 4
+    elif answer == "Interest":
+        return 3
+    elif answer == "Ne connais pas":
+        return 1
+    elif answer == "Pas intéressé":
+        return 2
+
 def initializeStudent(student,row):
 
     student.id = row[columns["num"]]
@@ -64,14 +87,14 @@ def initializeStudent(student,row):
     student.technology_interest["Videogames"] = row[columns["interet_jeux_videos"]]
     student.high_school_subjects = str(row[columns["matiere_lycee"]]).split(",")
     student.s5_fav_subjects = str(row[columns["cours_S5"]]).split(",")
-    student.used_softwares["LabView"] = row[columns["labview"]]
-    student.used_softwares["Excel"] = row[columns["excel"]]
-    student.used_softwares["Blender"] = row[columns["blender"]]
-    student.used_softwares["Unity"] = row[columns["unity"]]
-    student.used_softwares["Figma"] = row[columns["figma"]]
-    student.used_softwares["Cisco Packet Tracer"] = row[columns["cisco"]]
-    student.used_softwares["SolidWorks"] = row[columns["solidworks"]]
-    student.used_softwares["AutoCAD"] = row[columns["autocad"]]
+    student.used_softwares["LabView"] = assign_value_to_string_answer(row[columns["labview"]])
+    student.used_softwares["Excel"] = assign_value_to_string_answer(row[columns["excel"]])
+    student.used_softwares["Blender"] = assign_value_to_string_answer(row[columns["blender"]])
+    student.used_softwares["Unity"] = assign_value_to_string_answer(row[columns["unity"]])
+    student.used_softwares["Figma"] = assign_value_to_string_answer(row[columns["figma"]])
+    student.used_softwares["Cisco Packet Tracer"] = assign_value_to_string_answer(row[columns["cisco"]])
+    student.used_softwares["SolidWorks"] = assign_value_to_string_answer(row[columns["solidworks"]])
+    student.used_softwares["AutoCAD"] = assign_value_to_string_answer(row[columns["autocad"]])
     student.ensim_machines = str(row[columns["machines_ensim"]]).split(",")
 
     for machine in student.ensim_machines:
@@ -80,12 +103,26 @@ def initializeStudent(student,row):
             student.ensim_machines.remove(" les ordis c’est très bien")
             student.ensim_machines.append("Rien, les ordis c'est très bien")
             break
+        if machine == "Rien":
+            student.ensim_machines.remove("Rien")
+            student.ensim_machines.remove(" les ordis c’est très bien")
+            student.ensim_machines.append("Rien, les ordis c'est très bien")
 
-    student.associations["Kartel"] = row[columns["kartel"]]
-    student.associations["Ensimersion"] = row[columns["ensimersion"]]
-    student.associations["Ensim'Elec"] = row[columns["ensimelec"]]
-    student.associations["Enigma"] = row[columns["enigma"]]
-    student.associations["L'Ensimien"] = row[columns["lensimien"]]
+        if machine == " Cartes électroniques programmables (Arduino":
+            student.ensim_machines.remove(" Cartes électroniques programmables (Arduino")
+            student.ensim_machines.remove(" Raspberry...)")
+            student.ensim_machines.append("Cartes électroniques programmables (Arduino, Raspberry...)")
+            break
+        if machine == "Cartes électroniques programmables (Arduino":
+            student.ensim_machines.remove("Cartes électroniques programmables (Arduino")
+            student.ensim_machines.remove(" Raspberry...)")
+            student.ensim_machines.append("Cartes électroniques programmables (Arduino, Raspberry...)")
+
+    student.associations["Kartel"] = assign_value_to_string_answer_asso(row[columns["kartel"]])
+    student.associations["Ensimersion"] = assign_value_to_string_answer_asso(row[columns["ensimersion"]])
+    student.associations["Ensim'Elec"] = assign_value_to_string_answer_asso(row[columns["ensimelec"]])
+    student.associations["Enigma"] = assign_value_to_string_answer_asso(row[columns["enigma"]])
+    student.associations["L'Ensimien"] = assign_value_to_string_answer_asso(row[columns["lensimien"]])
     student.object_to_3d_print = row[columns["imprimante_3d"]]
     student.hobbies = str(row[columns["hobbies"]]).split(",")
     student.is_using_color_palette = True if str(row[columns["palettes_couleurs"]]) == "Oui" else False
