@@ -37,19 +37,24 @@ hypothesis_values = list(our_hypothesis.values())
 
 
 def create_slider(label, base_value):
-    html_label = html.Label(str(label)),
+    inner_div = []
+    html_label = html.Label(str(label))
     html_slider = dcc.Slider(
         min=-5,
         max=5,
-        step=0.2,
+        step=1,
         value=base_value,
         tooltip={"placement": "bottom", "always_visible": True},
         updatemode='drag',
         persistence=True,
         persistence_type='session',  # 'memory' or 'local'
         id=str(label)
-    ),
-    return html_label, html_slider
+    )
+    inner_div.append(html_label)
+    inner_div.append(html_slider)
+
+    div = html.Div(inner_div)
+    return div
 
 
 def compute_score(answers):
@@ -67,6 +72,7 @@ def compute_score(answers):
 df = pd.read_csv(r'data\data.csv')
 
 students = []
+
 
 for index, row in df.iterrows():
     student = Student()
@@ -89,10 +95,13 @@ div_content = [
     html.H1("Choix ASTRE-IPS", style={'textAlign': 'center'}),
 ]
 
+inner_div = []
 for label, value in our_hypothesis.items():
-    html_label, html_slider = create_slider(label, value)
-    div_content.append(html_label[0])
-    div_content.append(html_slider[0])
+    div = create_slider(label, value)
+    inner_div.append(div)
+
+global_div = html.Div(inner_div,style={"display": "grid", "grid-template-columns": "33% 33% 33%"})
+div_content.append(global_div)
 
 div_content.append(html.Label("ASTRE"))
 div_content.append(html.Ul(id="ASTRE"))
