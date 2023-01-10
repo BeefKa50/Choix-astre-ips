@@ -127,8 +127,8 @@ class Student:
                 answers_array["Rien"] = hypothesis["Rien"]
 
         answers_array["K[art]el"] = hypothesis["K[art]el"] * ((self.associations["Kartel"] - 1) / 3) if self.associations["Kartel"] is not None else 0
-        answers_array["Ensimersion"] = hypothesis["Ensimersion"] * ((self.associations["Ensimersion"] - 1) / 3) if self.associations["Kartel"] is not None else 0
-        answers_array["Ensim'Elec"] = hypothesis["Ensim'Elec"] * ((self.associations["Ensim'Elec"] - 1) / 3) if self.associations["Kartel"] is not None else 0
+        answers_array["Ensimersion"] = hypothesis["Ensimersion"] * ((self.associations["Ensimersion"] - 1) / 3) if self.associations["Ensimersion"] is not None else 0
+        answers_array["Ensim'Elec"] = hypothesis["Ensim'Elec"] * ((self.associations["Ensim'Elec"] - 1) / 3) if self.associations["Ensim'Elec"] is not None else 0
         answers_array["Enigma"] = hypothesis["Enigma"] * ((self.associations["Enigma"] - 1) / 3) if self.associations["Enigma"] is not None else 0
         answers_array["L'Ensimien"] = hypothesis["L'Ensimien"] * ((self.associations["L'Ensimien"] - 1) / 3) if self.associations["L'Ensimien"] is not None else 0
 

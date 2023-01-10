@@ -129,5 +129,3 @@ def initializeStudent(student,row):
     student.action_when_crash = row[columns["panne_ordinateur"]]
     student.studies_before_ensim = row[columns["etudes_avant_ensim"]]
     student.fav_os = row[columns["os_pref"]]
-
-print(columns.keys())
