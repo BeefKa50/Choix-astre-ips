@@ -3,8 +3,8 @@ from dash import Dash, dcc, html, Output, Input
 import plotly.express as px
 import pandas as pd
 
-from functions import initializeStudent
-from student import Student
+from utilities.functions import initializeStudent
+from utilities.student import Student
 
 # Our hypothesis for each answer
 # Negatives values stands for ASTRE

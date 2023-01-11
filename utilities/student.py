@@ -1,4 +1,5 @@
-from functions import hypothesis
+from utilities.functions import hypothesis
+
 
 # Class that will embed data on a student : student number and answers to each question
 class Student:

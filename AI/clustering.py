@@ -4,10 +4,8 @@ from sklearn.cluster import BisectingKMeans
 import matplotlib.pyplot as plt
 from sklearn.decomposition import PCA
 
-from sklearn.manifold import LocallyLinearEmbedding
-
-from functions import initializeStudent
-from student import Student
+from utilities.functions import initializeStudent
+from utilities.student import Student
 
 
 # Find clusters in the input data
@@ -17,7 +15,7 @@ def classify_student(X):
 
     return pred
 
-df = pd.read_csv(r'data\data.csv')
+df = pd.read_csv(r'..\data\data.csv')
 
 students = []
 
