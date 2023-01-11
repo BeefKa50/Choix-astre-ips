@@ -39,7 +39,7 @@ hypothesis_values = list(our_hypothesis.values())
 # and initial value
 def create_slider(label, base_value):
     inner_div = []
-    html_label = html.Label(str(label))
+    html_label = html.Label(str(label),style={"font-family":"Courier New"})
     html_slider = dcc.Slider(
         min=-5,
         max=5,
@@ -94,7 +94,7 @@ app = Dash(__name__)
 
 # Initialize the global html div element with the page title
 div_content = [
-    html.H1("Choix ASTRE-IPS", style={'textAlign': 'center'}),
+    html.H1("Choix ASTRE-IPS", style={'textAlign': 'center',"font-family":"Courier New"}),
 ]
 
 # Get all slider (one for each answer) to apply a coefficient to each one with the dashboard
@@ -113,19 +113,19 @@ result_2_div = []
 result_3_div = []
 
 # Initialize the list of ASTRE students
-result_1_div.append(html.Label("ASTRE"))
-result_1_div.append(html.Ul(id="ASTRE"))
-result_div.append(html.Div(result_1_div))
+result_1_div.append(html.Label("ASTRE",style={"font-family":"Courier New"}))
+result_1_div.append(html.Ul(id="ASTRE",style={"list-style-type":"none"}))
+result_div.append(html.Div(result_1_div,style={"width":"130px","font": "200 20px/1.5 Helvetica, Verdana, sans-serif"}))
 
 # Initialize the list of IPS students
-result_2_div.append(html.Label("IPS"))
-result_2_div.append(html.Ul(id="IPS"))
-result_div.append(html.Div(result_2_div))
+result_2_div.append(html.Label("IPS",style={"font-family":"Courier New"}))
+result_2_div.append(html.Ul(id="IPS",style={"list-style-type":"none"}))
+result_div.append(html.Div(result_2_div,style={"width":"130px","font": "200 20px/1.5 Helvetica, Verdana, sans-serif"}))
 
 # Initialize the list of undecided students
-result_3_div .append(html.Label("Indécis"))
-result_3_div .append(html.Ul(id="Indecis"))
-result_div.append(html.Div(result_3_div))
+result_3_div .append(html.Label("Indécis",style={"font-family":"Courier New"}))
+result_3_div .append(html.Ul(id="Indecis",style={"list-style-type":"none"}))
+result_div.append(html.Div(result_3_div,style={"width":"130px","font": "200 20px/1.5 Helvetica, Verdana, sans-serif"}))
 
 # Put the lists in a grid
 div_content.append(html.Div(result_div,style={"display": "grid", "padding-left":"350px","padding-top":"50px",
@@ -171,11 +171,11 @@ def update_graph(*slider_values):
     # Determine whether if a student will choose ASTRE or IPS according to its score
     for student, score in scores.items():
         if score < threshold_min:
-            astre_students.append(html.Li(student))
+            astre_students.append(html.Li(student,style={"text-align":"center","border-bottom":"1px solid #ccc"}))
         elif score > threshold_max:
-            ips_students.append(html.Li(student))
+            ips_students.append(html.Li(student,style={"text-align":"center","border-bottom":"1px solid #ccc"}))
         else:
-            unknown_students.append(html.Li(student))
+            unknown_students.append(html.Li(student,style={"text-align":"center","border-bottom":"1px solid #ccc"}))
 
     # Update the pie chart to show the proportion of ASTRE, IPS and Undecided students
     chart_values = {"Spécialité":["ASTRE","IPS","Indécis"],"Nombre d'étudiants":

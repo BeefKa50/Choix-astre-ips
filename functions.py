@@ -1,3 +1,4 @@
+# Column names in the csv file
 columns = {"date":"Horodateur",
            "num":"1. Quel est votre numéro étudiant ? (ex: e22XXXX)",
            "def_inge":"2. Quelle est la définition d’un ingénieur qui vous correspond le mieux ?",
@@ -32,6 +33,7 @@ columns = {"date":"Horodateur",
            "etudes_avant_ensim":"14. Qu’avez-vous fait avant le cycle ingénieur ?",
            "os_pref":"15. Quel est ton système d’exploitation que tu utilises le plus pour développer ?"}
 
+# Initial coefficients for each answer (1)
 hypothesis = {"Ingénieur expert technique":1,"Ingénieur, homme de culture":1,"Ingénieur chef de projet":1,
               "Procédural":1,"Orienté objet":1,"Fonctionnel":1,"Web":1,"Cloud":1,"Embarqué":1,"Mobile":1,
               "Développement de jeux vidéos":1,"Mathématiques":1,"Physique-Chimie":1,
@@ -51,6 +53,7 @@ hypothesis = {"Ingénieur expert technique":1,"Ingénieur, homme de culture":1,"
               "BTS SIO":1, "BTS SN":1, "DUT Informatique":1, "DUT Métiers du multimédia et de l'internet":1,
               "L2/L3 Informatique":1, "M1/M2 Informatique":1, "Windows":1, "MacOS":1, "Linux":1}
 
+# Transform a string value to a numeric value in a range
 def assign_value_to_string_answer(answer):
     if answer == "Ne connais pas":
         return 1
@@ -63,6 +66,7 @@ def assign_value_to_string_answer(answer):
     elif answer == "Tout le temps":
         return 5
 
+# Transform a string value to a numeric value in a range
 def assign_value_to_string_answer_asso(answer):
     if answer == "J'y suis":
         return 4
@@ -73,6 +77,7 @@ def assign_value_to_string_answer_asso(answer):
     elif answer == "Pas intéressé":
         return 2
 
+# Initialize a Student object with its line in the csv file
 def initializeStudent(student,row):
 
     student.id = row[columns["num"]]
