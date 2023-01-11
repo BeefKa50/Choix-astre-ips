@@ -1,14 +1,9 @@
-from sklearn.cluster import KMeans, SpectralClustering, AgglomerativeClustering, BisectingKMeans
-import numpy as np
-import pandas as pd
-from sklearn.decomposition import PCA
+from sklearn.cluster import BisectingKMeans
+
 from sklearn.manifold import LocallyLinearEmbedding
 
-from functions import initializeStudent
-from student import Student
-import matplotlib.pyplot as plt
-
-def classify_student(student_answers):
+# Find clusters in the input data
+def classify_student(X):
     # pca = PCA(n_components=30)
     # X = pca.fit_transform(X)
     embedding = LocallyLinearEmbedding(n_components=15)

@@ -1,9 +1,6 @@
-import numpy as np
-from django.db import models
-
 from functions import hypothesis
 
-
+# Class that will embed data on a student : student number and answers to each question
 class Student:
     def __init__(self):
         self.id = "e000000"
@@ -24,6 +21,14 @@ class Student:
         self.studies_before_ensim = ""
         self.fav_os = ""
 
+    # This function return a dictionary like {answer:coefficient} where answer is the name of a single
+    # answer and coefficient is between 0 and 1
+
+    # For single or multiple choice questions the coefficient will be set to 1 if the student chose this option
+    # else it will be set to 0
+
+    # For questions when the student needed to answer a number between two limits the coefficient is computed
+    # in order to make it reach 0 if he answers the lower limit and 1 if he answers the upper limit.
     def answersAsArray(self):
         answers_array = {}
         for key,value in hypothesis.items():
